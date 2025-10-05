@@ -15,7 +15,7 @@
 ### Monospace fonts
 
     cd example
-    python3 ../stm32-font.py --font Menlo.ttc --size 32
+    python stm32-font.py --font "Times New Roman.ttf" --size 28
 
 ### Proportional font
 
