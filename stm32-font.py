@@ -8,8 +8,7 @@ import textwrap
 # Greyscale threshold from 0 - 255
 THRESHOLD = 128
 # Font Character Set
-#CHAR_SET = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя'
-CHAR_SET = '0123456789'
+CHAR_SET = '0123456789EditSave⇧⇩'
 
 def get_charset_perceived():
     # https://stackoverflow.com/questions/6805311/playing-around-with-devanagari-characters
