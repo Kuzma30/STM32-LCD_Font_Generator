@@ -8,7 +8,8 @@ import textwrap
 # Greyscale threshold from 0 - 255
 THRESHOLD = 128
 # Font Character Set
-CHAR_SET = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя'
+#CHAR_SET = '!"#$%&\'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~АБВГДЕЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдежзийклмнопрстуфхцчшщъыьэюя'
+CHAR_SET = '0123456789'
 
 def get_charset_perceived():
     # https://stackoverflow.com/questions/6805311/playing-around-with-devanagari-characters
@@ -34,9 +35,9 @@ def bin_to_c_binary_array(bin_text, bytes_per_line, lsb_padding=0, msb_padding=0
     # Split into individual bits
     bit_list = list(bin_text)
     # Join bits with commas
-    array = ', '.join(bit_list)
+    array = ' '.join(bit_list)
 
-    return f'{array},\n'#, ;|{comment}|\n'
+    return f'{array}\n'#, ;|{comment}|\n'
 
 def generate_font_data(font, x_size, y_size):
     data = ''
@@ -46,6 +47,8 @@ def generate_font_data(font, x_size, y_size):
     empty_bit_padding = (bytes_per_line * 8 - x_size)
 
     for i, ch in enumerate(get_charset_perceived()):
+        #data +=';------------------------------------\n'
+
         # The starting array index of the current char
         array_offset = i * (bytes_per_line * 8 * y_size)
 
@@ -85,6 +88,9 @@ def output_files(font, font_width, font_height, font_data, font_name):
 
     # C file template with binary radix
     output = f"""
+; font width = {font_width}
+; font height = {font_height}
+; font name = {font_type}
 memory_initialization_radix = 2;
 memory_initialization_vector =
 {font_data}
